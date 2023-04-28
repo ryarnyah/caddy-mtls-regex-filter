@@ -9,8 +9,6 @@ import (
 	"github.com/caddyserver/caddy/v2"
 	"github.com/caddyserver/caddy/v2/caddyconfig/caddyfile"
 	"github.com/caddyserver/caddy/v2/modules/caddytls"
-
-	"go.uber.org/zap"
 )
 
 func init() {
@@ -21,11 +19,9 @@ type MTLSRegexFilter struct {
 	TrustedRegexpOIDs [][]map[string]string `json:"trusted_regexp_oids,omitempty"`
 
 	patterns [][]map[string]*regexp.Regexp
-	logger   *zap.Logger
 }
 
 func (m *MTLSRegexFilter) Provision(ctx caddy.Context) error {
-	m.logger = ctx.Logger(m)
 	for _, groupPattern := range m.TrustedRegexpOIDs {
 		p := make([]map[string]*regexp.Regexp, 0)
 		for _, pattern := range groupPattern {
