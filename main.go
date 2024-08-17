@@ -87,7 +87,7 @@ func (g MTLSRegexFilter) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 
 func (MTLSRegexFilter) CaddyModule() caddy.ModuleInfo {
 	return caddy.ModuleInfo{
-		ID: "tls.client_auth.regexp_filter",
+		ID: "tls.client_auth.verifier.regexp_filter",
 		New: func() caddy.Module {
 			return &MTLSRegexFilter{
 				TrustedRegexpOIDs: make([][]map[string]string, 0),
